@@ -7,4 +7,4 @@ Modifications made on April 17, 2023, include:
 - added level logic and show on interface
 - some interface changes
 
-The modified version is distributed under the same license as the original software, the [GNU General Public License version 3] (https://github.com/dozingcat/Vector-Pinball/blob/master/COPYING.txt).
+The modified version is distributed under the same license as the original software, the [GNU General Public License version 3](https://github.com/dozingcat/Vector-Pinball/blob/master/COPYING.txt).
