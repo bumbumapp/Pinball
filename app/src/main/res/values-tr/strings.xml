@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Vector Pinball</string>
+    <string name="app_name" translatable="false">Pinball</string>
 
     <string name="independent_flippers_pref_title">Ayrık Kollar</string>
     <string name="independent_flippers_pref_summary_on">Sağa dokunuş sağdaki kolları, sola dokunuş soldaki kolları hareket ettirir</string>
@@ -67,5 +67,13 @@
     <string name="ramp_bonus_increased_message">Rampa bonusu etkin!</string>
     <string name="shoot_ramp_jackpot_message">Vurgun için rampadan geçin!</string>
     <string name="constellation_complete_message">%1$s tamamlandı!</string>
-
+    <string name="show_high_score_button_label">Yüksek puanlar</string>
+    <string name="hide_high_score_button_label">OK</string>
+    <string name="high_score_table_title">Yüksek puanlar</string>
+    <string name="no_high_scores_message">Bu tablo için puan yok</string>
+    <string name="ball_saved_message">Top kaydedildi</string>
+    <string name="start_game_button_label">Oyunu başlat</string>
+    <string name="resume_game_button_label">Oyuna devam et</string>
+    <string name="quit_button_label">Çıkış</string>
+    <string name="select_table">Tablo seçin</string>
 </resources>

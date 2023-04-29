@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceCategory android:title="Preferences">
-	
-		<CheckBoxPreference android:key="sound" android:defaultValue="true" android:enabled="true"
+
+	<com.bumbumapps.bouncy.util.ToolbarPreference
+		android:key="backs"
+		android:enabled="true"
+		android:layout="@layout/settings">
+	</com.bumbumapps.bouncy.util.ToolbarPreference>
+
+	<CheckBoxPreference android:key="sound" android:defaultValue="true" android:enabled="true"
 		    android:title="@string/sound_pref_title" />
 		
 		<CheckBoxPreference android:key="music" android:defaultValue="true" android:enabled="true"
@@ -16,7 +21,7 @@
 		    android:summaryOff="@string/independent_flippers_pref_summary_off"
 		    android:summaryOn="@string/independent_flippers_pref_summary_on" />
 		
-		<CheckBoxPreference android:key="zoom" android:defaultValue="true" android:enabled="true"
+		<CheckBoxPreference android:key="zoom" android:defaultValue="false" android:enabled="true"
 		    android:title="@string/zoom_pref_title" />
 		
 		<CheckBoxPreference android:key="useOpenGL" android:defaultValue="true" android:enabled="true"
@@ -29,6 +34,18 @@
 
 		<CheckBoxPreference android:key="showFPS" android:enabled="true"
 		    android:title="@string/show_fps_pref_title" />
-		
+	<PreferenceCategory
+		android:title="About">
+
+		<Preference
+			android:key="app_licence"
+			android:summary="GPL-3.0 license"
+			android:title="App Licence" />
+
+		<Preference
+			android:iconSpaceReserved="false"
+			android:key="source_code"
+			android:title="Source Code" />
+
 	</PreferenceCategory>
 </PreferenceScreen>
