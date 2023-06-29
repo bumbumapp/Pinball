@@ -77,5 +77,8 @@
     <string name="hide_high_score_button_label">OK</string>
     <string name="high_score_table_title">High scores</string>
     <string name="select_table">Select table</string>
+    <string name="banner_app_id">ca-app-pub-8444865753152507~5380880963</string>
+    <string name="banner_id">ca-app-pub-8444865753152507/9690309995</string>
+    <string name="interstial_id">ca-app-pub-8444865753152507/5420672743</string>
 
 </resources>

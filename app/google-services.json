@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "659801309985",
+    "project_id": "pinball-4d88a",
+    "storage_bucket": "pinball-4d88a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659801309985:android:4d3dc657cee68cd38d3460",
+        "android_client_info": {
+          "package_name": "com.bumbumapps.pinball"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659801309985-kd23feog5vh6vsj81ephlrgf4bss9e5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB59-5PBEmsHAFceOvdT70p6EiaJL5PPLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659801309985-kd23feog5vh6vsj81ephlrgf4bss9e5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

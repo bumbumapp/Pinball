@@ -1,5 +1,7 @@
 package com.bumbumapps.bouncy;
 
+import static com.bumbumapps.bouncy.util.AdsUtils.mInterstitialAd;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -8,11 +10,17 @@ import java.util.Collections;
 import java.util.List;
 
 import com.badlogic.gdx.physics.box2d.Box2D;
+import com.bumbumapps.bouncy.util.AdsUtils;
+import com.bumbumapps.bouncy.util.Globals;
+import com.bumbumapps.bouncy.util.Timers;
 import com.bumbumapps.vectorpinball.model.IStringResolver;
 import com.bumbumapps.vectorpinball.util.IOUtils;
 import com.bumbumapps.vectorpinball.model.Field;
 import com.bumbumapps.vectorpinball.model.FieldDriver;
 import com.bumbumapps.vectorpinball.model.GameState;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -121,6 +129,7 @@ public class BouncyActivity extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             this.getWindow().setNavigationBarColor(Color.BLACK);
         }
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
 
         this.numberOfLevels = FieldLayoutReader.getNumberOfLevels(this);
         this.currentLevel = getInitialLevel();
@@ -175,7 +184,9 @@ public class BouncyActivity extends Activity {
         highScoreListLayout = findViewById(R.id.highScoreListLayout);
         noHighScoresTextView = findViewById(R.id.noHighScoresTextView);
         pauseButton = findViewById(R.id.pauseIcon);
-
+        AdView bannerView=findViewById(R.id.adView);
+        AdsUtils.showGoogleBannerAd(this,bannerView);
+        AdsUtils.loadGoogleInterstitialAd(this);
         // Ugly workaround that seems to be required when supporting keyboard navigation.
         // In main.xml, all buttons have `android:focusableInTouchMode` set to true.
         // If it's not, then they don't get focused even when using the dpad on a
@@ -270,7 +281,7 @@ public class BouncyActivity extends Activity {
 
         // Go to full screen mode here; if we only do it in onCreate then the UI can get stuck
         // with the navigation bar on top of the field.
-        enterFullscreenMode();
+//        enterFullscreenMode();
         // Reset frame rate since app or system settings that affect performance could have changed.
         fieldDriver.resetFrameRate();
         updateButtons();
@@ -585,37 +596,81 @@ public class BouncyActivity extends Activity {
 
     // Button action methods defined by android:onClick values in main.xml.
     public void doStartGame(View view) {
-        if (field.getGameState().isPaused()) {
-            unpauseGame();
-            return;
-        }
-        // Avoids accidental starts due to touches just after game ends.
-        if (endGameTime == null || (System.currentTimeMillis() < endGameTime + END_GAME_DELAY_MS)) {
-            return;
-        }
-        if (!field.getGameState().isGameInProgress()) {
-            // https://github.com/dozingcat/Vector-Pinball/issues/91
-            // These actions need to be synchronized so that we don't try to
-            // start the game while the FieldDriver thread is updating the
-            // Box2d world. It's not clear what should be synchronized and what
-            // shouldn't; for example pauseGame() above should not be
-            // synchronized because that can deadlock the FieldDriver thread.
-            // All of this concurrency is badly in need of refactoring.
-            synchronized (field) {
-                buttonPanel.setVisibility(View.GONE);
-                highScorePanel.setVisibility(View.GONE);
-                resetFieldForCurrentLevel();
+        if (Globals.TIMER_FINISHED && mInterstitialAd != null) {
+            mInterstitialAd.show(this);
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    Globals.TIMER_FINISHED = false;
+                    Timers.timer().start();
+                    mInterstitialAd = null;
+                    if (field.getGameState().isPaused()) {
+                        unpauseGame();
+                        return;
+                    }
+                    // Avoids accidental starts due to touches just after game ends.
+                    if (endGameTime == null || (System.currentTimeMillis() < endGameTime + END_GAME_DELAY_MS)) {
+                        return;
+                    }
+                    if (!field.getGameState().isGameInProgress()) {
+                        // https://github.com/dozingcat/Vector-Pinball/issues/91
+                        // These actions need to be synchronized so that we don't try to
+                        // start the game while the FieldDriver thread is updating the
+                        // Box2d world. It's not clear what should be synchronized and what
+                        // shouldn't; for example pauseGame() above should not be
+                        // synchronized because that can deadlock the FieldDriver thread.
+                        // All of this concurrency is badly in need of refactoring.
+                        synchronized (field) {
+                            buttonPanel.setVisibility(View.GONE);
+                            highScorePanel.setVisibility(View.GONE);
+                            resetFieldForCurrentLevel();
 
-                if (unlimitedBallsToggle.isChecked()) {
-                    field.startGameWithUnlimitedBalls();
+                            if (unlimitedBallsToggle.isChecked()) {
+                                field.startGameWithUnlimitedBalls();
+                            } else {
+                                field.startGame();
+                            }
+                        }
+                        VPSoundpool.playStart();
+                        endGameTime = null;
+                        updateButtons();
+                    }
+                    AdsUtils.loadGoogleInterstitialAd(BouncyActivity.this);
                 }
-                else {
-                    field.startGame();
-                }
+
+            });
+        }else {
+            if (field.getGameState().isPaused()) {
+                unpauseGame();
+                return;
             }
-            VPSoundpool.playStart();
-            endGameTime = null;
-            updateButtons();
+            // Avoids accidental starts due to touches just after game ends.
+            if (endGameTime == null || (System.currentTimeMillis() < endGameTime + END_GAME_DELAY_MS)) {
+                return;
+            }
+            if (!field.getGameState().isGameInProgress()) {
+                // https://github.com/dozingcat/Vector-Pinball/issues/91
+                // These actions need to be synchronized so that we don't try to
+                // start the game while the FieldDriver thread is updating the
+                // Box2d world. It's not clear what should be synchronized and what
+                // shouldn't; for example pauseGame() above should not be
+                // synchronized because that can deadlock the FieldDriver thread.
+                // All of this concurrency is badly in need of refactoring.
+                synchronized (field) {
+                    buttonPanel.setVisibility(View.GONE);
+                    highScorePanel.setVisibility(View.GONE);
+                    resetFieldForCurrentLevel();
+
+                    if (unlimitedBallsToggle.isChecked()) {
+                        field.startGameWithUnlimitedBalls();
+                    } else {
+                        field.startGame();
+                    }
+                }
+                VPSoundpool.playStart();
+                endGameTime = null;
+                updateButtons();
+            }
         }
     }
 
