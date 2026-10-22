@@ -49,6 +49,8 @@ import android.widget.TextView;
 public class BouncyActivity extends Activity {
 
     static {
+        // libGDX core natives (BufferUtils) are needed by Box2D since libGDX 1.12.
+        com.badlogic.gdx.utils.GdxNativesLoader.load();
         Box2D.init();
     }
 
