@@ -6,5 +6,8 @@
         https://stackoverflow.com/questions/51187710/android-navigationbarcolor-doesnt-change-to-black-only-to-black
         -->
         <item name="android:navigationBarColor">#010101</item>
+        <item name="android:statusBarColor">@color/arcade_bg</item>
+        <item name="android:windowBackground">@color/arcade_bg</item>
+        <item name="android:colorAccent">@color/arcade_cyan</item>
     </style>
 </resources>

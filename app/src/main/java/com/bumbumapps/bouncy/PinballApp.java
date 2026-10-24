@@ -9,5 +9,6 @@ public class PinballApp extends Application {
     public void onCreate() {
         super.onCreate();
         EdgeToEdgeCallbacks.register(this);
+        com.bumbumapps.bouncy.util.ReviewPrompt.onAppLaunch(this);
     }
 }

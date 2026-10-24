@@ -69,4 +69,23 @@
     <string name="shoot_ramp_jackpot_message">Trafu ramplon por gajni premion</string>
     <string name="constellation_complete_message">Stelfiguro %1$s kompleta</string>
 
+    <string name="arcade_game_over">Ludo finiĝis</string>
+    <string name="arcade_new_best">★ NOVA REKORDO</string>
+    <string name="arcade_share_score">Kunhavigi poentaron</string>
+    <string name="arcade_previous_table">Antaŭa tablo</string>
+    <string name="arcade_next_table">Sekva tablo</string>
+    <string name="arcade_practice_mode">Ekzerca reĝimo · senlimaj pilkoj</string>
+    <string name="arcade_play">Ludi</string>
+    <string name="arcade_table_rules">Reguloj de la tablo</string>
+    <string name="arcade_table_index">Tablo %1$d / %2$d</string>
+    <string name="arcade_table_best">Rekordo %1$s</string>
+    <string name="arcade_table_no_best">Ankoraŭ neniu poentaro</string>
+    <string name="arcade_share_text">Mi gajnis %1$s poentojn ĉe la tablo %2$s en Pinball! Ĉu vi povas superi? %3$s</string>
+    <string name="arcade_share_title">Kunhavigu vian poentaron</string>
+    <string name="arcade_back">Reen</string>
+    <string name="arcade_how_to_play">Kiel ludi</string>
+    <string name="arcade_howto_launch">Tuŝu la ekranon por lanĉi la pilkon.</string>
+    <string name="arcade_howto_flippers">Tuŝu la maldekstran duonon por la maldekstra flipilo, la dekstran por la dekstra.</string>
+    <string name="arcade_howto_pause">Tuŝu la poentaran breton supre por paŭzigi la ludon.</string>
+    <string name="arcade_credits">Bazita sur Vector Pinball © 2010–2022 Brian Nenninger · GPL-3.0</string>
 </resources>

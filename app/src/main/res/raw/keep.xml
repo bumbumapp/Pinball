@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Table rules are looked up by name (table<N>_rules) at runtime. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/table*_rules" />

@@ -3,4 +3,18 @@
     <color name="icon_background">#000000</color>
     <color name="background">#553272</color>
     <color name="yellow">#ffc107</color>
+
+    <!-- Neon arcade palette -->
+    <color name="arcade_bg">#0B0A1A</color>
+    <color name="arcade_panel">#EB141129</color>
+    <color name="arcade_card">#1AFFFFFF</color>
+    <color name="arcade_stroke">#26FFFFFF</color>
+    <color name="arcade_pink">#FF3D9A</color>
+    <color name="arcade_violet">#8A3FFC</color>
+    <color name="arcade_cyan">#22E1FF</color>
+    <color name="arcade_gold">#FFC83D</color>
+    <color name="arcade_silver">#C9D3E3</color>
+    <color name="arcade_bronze">#E59866</color>
+    <color name="arcade_text">#FFFFFF</color>
+    <color name="arcade_text_secondary">#B3B8C7</color>
 </resources>

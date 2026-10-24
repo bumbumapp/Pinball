@@ -61,28 +61,38 @@ public class ScoreView extends View {
 
     public ScoreView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        textPaint.setColor(Color.parseColor("#Ffc107"));
-        levelPaint.setColor(Color.parseColor("#Ffc107"));
+        // Neon arcade look: display font with a soft glow on a dark gradient bar.
+        android.graphics.Typeface arcadeFont = androidx.core.content.res.ResourcesCompat.getFont(context, R.font.russo_one);
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTypeface(arcadeFont);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        levelPaint.setColor(Color.parseColor("#B3B8C7"));
+        levelPaint.setTypeface(arcadeFont);
+        levelPaint.setAntiAlias(true);
         textPaint.setAntiAlias(true);
         // setTextSize uses absolute pixels, get screen density to scale.
         WindowManager windowManager =
                 (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
-        textPaint.setTextSize(15 * metrics.density);
-        levelPaint.setTextSize(15 * metrics.density);
+        textPaint.setTextSize(19 * metrics.density);
+        textPaint.setShadowLayer(8 * metrics.density, 0, 0, Color.parseColor("#9922E1FF"));
+        levelPaint.setTextSize(13 * metrics.density);
+        barLinePaint.setStrokeWidth(1.5f * metrics.density);
 
         fpsPaint.setARGB(255, 255, 255, 0);
         fpsPaint.setTextSize(9 * metrics.density);
         fpsPaint.setAntiAlias(true);
 
-        multiplierPaint.setARGB(255, 32, 224, 32);
-        multiplierPaint.setTextSize(12 * metrics.density);
+        multiplierPaint.setColor(Color.parseColor("#FF3D9A"));
+        multiplierPaint.setTypeface(arcadeFont);
+        multiplierPaint.setTextSize(13 * metrics.density);
         multiplierPaint.setAntiAlias(true);
 
-        usedBallPaint.setARGB(255, 128, 128, 128);
+        usedBallPaint.setARGB(110, 179, 184, 199);
         usedBallPaint.setStyle(Paint.Style.STROKE);
         usedBallPaint.setAntiAlias(true);
-        remainingBallPaint.setARGB(255, 224, 224, 224);
+        remainingBallPaint.setColor(Color.parseColor("#22E1FF"));
+        remainingBallPaint.setShadowLayer(4 * metrics.density, 0, 0, Color.parseColor("#9922E1FF"));
         remainingBallPaint.setStyle(Paint.Style.FILL);
         remainingBallPaint.setAntiAlias(true);
     }
@@ -109,7 +119,7 @@ public class ScoreView extends View {
             ballInPlay = field.getBalls().size() > 0;
         }
 
-        c.drawColor(backgroundColor);
+        drawBar(c);
         String displayString = (msg != null) ? msg.text : null;
         if (displayString == null) {
             // Show score if game is in progress, otherwise cycle between
@@ -138,7 +148,7 @@ public class ScoreView extends View {
         // textRect ends up being too high
         c.drawText(
                 displayString,
-                width / 2.0f + textRect.width() / 2.0f, height / 2.0f + textRect.height() / 3.0f,
+                width / 2.0f, height / 2.0f + textRect.height() / 2.0f,
                 textPaint);
 
         if (showFPS && fps > 0) {
@@ -153,7 +163,7 @@ public class ScoreView extends View {
             int level=prefs.getInt("level",1);
             c.drawText(
                     "Level "+level,
-                    width / 3.0f - textRect.width(), height / 2.0f + textRect.height() / 3.0f,
+                    16 * metrics.density + 40 * metrics.density, height / 2.0f + textRect.height() / 2.0f,
                     levelPaint);
             // Draw balls.
             float ballRadius = height / 10f;
@@ -191,6 +201,28 @@ public class ScoreView extends View {
                 c.drawText(multiplierString, messageStartX, height * 0.4f, multiplierPaint);
             }
         }
+    }
+
+    private final Paint barPaint = new Paint();
+    private final Paint barLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private int barHeight = -1;
+    private int barWidth = -1;
+
+    /** Dark gradient bar with a pink → violet → cyan neon line at the bottom. */
+    private void drawBar(Canvas c) {
+        int w = getWidth(), h = getHeight();
+        if (w != barWidth || h != barHeight) {
+            barWidth = w;
+            barHeight = h;
+            barPaint.setShader(new android.graphics.LinearGradient(0, 0, 0, h,
+                    Color.parseColor("#1C1640"), Color.parseColor("#0B0A1A"), android.graphics.Shader.TileMode.CLAMP));
+            barLinePaint.setShader(new android.graphics.LinearGradient(0, 0, w, 0,
+                    new int[]{Color.parseColor("#FF3D9A"), Color.parseColor("#8A3FFC"), Color.parseColor("#22E1FF")},
+                    null, android.graphics.Shader.TileMode.CLAMP));
+        }
+        c.drawRect(0, 0, w, h, barPaint);
+        float y = h - barLinePaint.getStrokeWidth() / 2f;
+        c.drawLine(0, y, w, y, barLinePaint);
     }
 
     long currentMillis() {

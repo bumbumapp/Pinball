@@ -79,4 +79,23 @@
     <string name="shoot_ramp_jackpot_message">Tirer la Rampe pour la Jackpot</string>
     <string name="constellation_complete_message">%1$s compléter</string>
 
+    <string name="arcade_game_over">Partie terminée</string>
+    <string name="arcade_new_best">★ NOUVEAU RECORD</string>
+    <string name="arcade_share_score">Partager le score</string>
+    <string name="arcade_previous_table">Table précédente</string>
+    <string name="arcade_next_table">Table suivante</string>
+    <string name="arcade_practice_mode">Mode entraînement · balles illimitées</string>
+    <string name="arcade_play">Jouer</string>
+    <string name="arcade_table_rules">Règles de la table</string>
+    <string name="arcade_table_index">Table %1$d / %2$d</string>
+    <string name="arcade_table_best">Record %1$s</string>
+    <string name="arcade_table_no_best">Pas encore de score</string>
+    <string name="arcade_share_text">J\'ai marqué %1$s points sur la table %2$s dans Pinball ! Tu peux faire mieux ? %3$s</string>
+    <string name="arcade_share_title">Partager ton score</string>
+    <string name="arcade_back">Retour</string>
+    <string name="arcade_how_to_play">Comment jouer</string>
+    <string name="arcade_howto_launch">Touchez l’écran pour lancer la balle.</string>
+    <string name="arcade_howto_flippers">Touchez la moitié gauche pour le flipper gauche, la moitié droite pour le flipper droit.</string>
+    <string name="arcade_howto_pause">Touchez la barre de score en haut pour mettre le jeu en pause.</string>
+    <string name="arcade_credits">Basé sur Vector Pinball © 2010–2022 Brian Nenninger · GPL-3.0</string>
 </resources>

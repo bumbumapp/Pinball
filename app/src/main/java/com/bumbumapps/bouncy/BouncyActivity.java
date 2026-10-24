@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.bumbumapps.bouncy.util.AdsConsent;
 import com.bumbumapps.bouncy.util.BannerHelper;
 import com.bumbumapps.bouncy.util.InterstitialHelper;
+import com.bumbumapps.bouncy.util.ReviewPrompt;
 import com.bumbumapps.vectorpinball.model.IStringResolver;
 import com.bumbumapps.vectorpinball.util.IOUtils;
 import com.bumbumapps.vectorpinball.model.Field;
@@ -41,7 +42,7 @@ import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -73,12 +74,22 @@ public class BouncyActivity extends Activity {
     Button startGameButton;
     Button resumeGameButton;
     Button endGameButton;
-    Button aboutButton;
-    Button preferencesButton;
-    Button quitButton;
-    Button showHighScoreButton;
+    View rulesButton;
+    View preferencesButton;
+    View quitButton;
+    View showHighScoreButton;
     Button hideHighScoreButton;
-    CheckBox unlimitedBallsToggle;
+    CompoundButton unlimitedBallsToggle;
+    TextView tableIndexText;
+    TextView tableNameText;
+    TextView tableBestText;
+    View gameOverCard;
+    TextView lastScoreText;
+    View newBestBadge;
+    TextView highScoreTableName;
+    // Result of the last finished game in this session, for the end-of-game card.
+    Long lastGameScore = null;
+    boolean lastGameNewBest = false;
     ViewGroup highScoreListLayout;
     View noHighScoresTextView;
     final static int ACTIVITY_PREFERENCES = 1;
@@ -183,6 +194,15 @@ public class BouncyActivity extends Activity {
         highScoreListLayout = findViewById(R.id.highScoreListLayout);
         noHighScoresTextView = findViewById(R.id.noHighScoresTextView);
         pauseButton = findViewById(R.id.pauseIcon);
+        rulesButton = findViewById(R.id.rulesButton);
+        tableIndexText = findViewById(R.id.tableIndexText);
+        tableNameText = findViewById(R.id.tableNameText);
+        tableBestText = findViewById(R.id.tableBestText);
+        gameOverCard = findViewById(R.id.gameOverCard);
+        lastScoreText = findViewById(R.id.lastScoreText);
+        newBestBadge = findViewById(R.id.newBestBadge);
+        highScoreTableName = findViewById(R.id.highScoreTableName);
+        updateTableCard();
         // UMP consent first; banner + interstitial only when ads may be requested.
         AdsConsent.gather(this, () -> {
             BannerHelper.load(this, findViewById(R.id.adView));
@@ -200,7 +220,8 @@ public class BouncyActivity extends Activity {
         // fragile but seems to be working ok.
         List<View> allButtons = Arrays.asList(
                 nextTableButton, previousTableButton, startGameButton, resumeGameButton, endGameButton,
-               preferencesButton, quitButton, unlimitedBallsToggle, showHighScoreButton, hideHighScoreButton);
+               preferencesButton, quitButton, unlimitedBallsToggle, showHighScoreButton, hideHighScoreButton,
+               rulesButton, findViewById(R.id.shareScoreButton));
         for (View button : allButtons) {
             button.setOnTouchListener((view, motionEvent) -> {
                 // Log.i(TAG, "Button motion event: " + motionEvent);
@@ -394,6 +415,7 @@ public class BouncyActivity extends Activity {
             selectTableRow.setVisibility(View.GONE);
             unlimitedBallsToggle.setVisibility(View.GONE);
             startGameButton.setVisibility(View.GONE);
+            gameOverCard.setVisibility(View.GONE);
             resumeGameButton.setVisibility(View.VISIBLE);
             endGameButton.setVisibility(View.VISIBLE);
             resumeGameButton.requestFocus();
@@ -405,6 +427,7 @@ public class BouncyActivity extends Activity {
             selectTableRow.setVisibility(View.VISIBLE);
             unlimitedBallsToggle.setVisibility(View.VISIBLE);
             startGameButton.setVisibility(View.VISIBLE);
+            updateGameOverCard();
             resumeGameButton.setVisibility(View.GONE);
             endGameButton.setVisibility(View.GONE);
             startGameButton.requestFocus();
@@ -501,6 +524,10 @@ public class BouncyActivity extends Activity {
                 this.endGameTime = System.currentTimeMillis();
                 updateButtons();
 
+                long finalScore = state.getScore();
+                lastGameScore = finalScore;
+                lastGameNewBest = GameSummary.isNewBest(
+                        finalScore, GameSummary.bestOf(highScores), state.hasUnlimitedBalls());
                 // No high scores for unlimited balls.
                 if (!state.hasUnlimitedBalls()) {
                     long score = field.getGameState().getScore();
@@ -510,6 +537,11 @@ public class BouncyActivity extends Activity {
                             highScores.size() < MAX_NUM_HIGH_SCORES) {
                         this.updateHighScoreForCurrentLevel(score);
                     }
+                }
+                updateTableCard();
+                updateButtons();
+                if (ReviewPrompt.recordFinishedGame(this, lastGameNewBest)) {
+                    handler.postDelayed(() -> ReviewPrompt.launch(this), 1500);
                 }
             }
         }
@@ -674,6 +706,10 @@ public class BouncyActivity extends Activity {
         this.setInitialLevel(currentLevel);
         this.highScores = this.highScoresFromPreferencesForCurrentLevel();
         scoreView.setHighScores(highScores);
+        // The last game's card belongs to the table it was played on.
+        lastGameScore = null;
+        updateTableCard();
+        updateButtons();
         // Performance can be different on different tables.
         fieldDriver.resetFrameRate();
     }
@@ -708,27 +744,89 @@ public class BouncyActivity extends Activity {
     }
 
     private void fillHighScoreAdapter() {
-        LinearLayout.LayoutParams params = null;
         this.highScoreListLayout.removeAllViews();
-        for (int index = 0; index < this.highScores.size(); index++) {
-            long score = this.highScores.get(index);
-            if (score > 0) {
-                if (params == null) {
-                    params = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params.bottomMargin = (int)(16 * getResources().getDisplayMetrics().scaledDensity);
-                }
-                TextView scoreItem = new TextView(this);
-                scoreItem.setLayoutParams(params);
-                scoreItem.setText(ScoreView.SCORE_FORMAT.format(score));
-                scoreItem.setTextSize(22);
-                scoreItem.setTextColor(Color.argb(255, 240, 240, 240));
-                scoreItem.setGravity(Gravity.END);
-                this.highScoreListLayout.addView(scoreItem);
-            }
+        highScoreTableName.setText(tableName(currentLevel));
+        float density = getResources().getDisplayMetrics().density;
+        int[] rankColors = {
+                getResources().getColor(R.color.arcade_gold),
+                getResources().getColor(R.color.arcade_silver),
+                getResources().getColor(R.color.arcade_bronze)};
+        int rank = 0;
+        for (long score : this.highScores) {
+            if (score <= 0) continue;
+            rank++;
+            LinearLayout row = new LinearLayout(this);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            row.setGravity(Gravity.CENTER_VERTICAL);
+            row.setBackgroundResource(R.drawable.bg_arcade_card);
+            int pad = (int) (12 * density);
+            row.setPadding(pad, (int) (8 * density), pad, (int) (8 * density));
+            LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            rowParams.bottomMargin = (int) (8 * density);
+            row.setLayoutParams(rowParams);
+
+            int color = rank <= rankColors.length ? rankColors[rank - 1] : getResources().getColor(R.color.arcade_text_secondary);
+            TextView rankView = new TextView(this);
+            rankView.setText("#" + rank);
+            rankView.setTextSize(16);
+            rankView.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.russo_one));
+            rankView.setTextColor(color);
+            rankView.setMinWidth((int) (44 * density));
+            row.addView(rankView);
+
+            TextView scoreItem = new TextView(this);
+            scoreItem.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+            scoreItem.setText(ScoreView.SCORE_FORMAT.format(score));
+            scoreItem.setTextSize(20);
+            scoreItem.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.russo_one));
+            scoreItem.setTextColor(rank == 1 ? color : getResources().getColor(R.color.arcade_text));
+            scoreItem.setGravity(Gravity.END);
+            row.addView(scoreItem);
+            this.highScoreListLayout.addView(row);
         }
         this.noHighScoresTextView.setVisibility(
                 this.highScoreListLayout.getChildCount() == 0 ? View.VISIBLE : View.GONE);
+    }
+
+    String tableName(int level) {
+        Object name = FieldLayoutReader.layoutMapForLevel(this, level).get("name");
+        return name != null ? name.toString() : getString(R.string.arcade_table_index, level, numberOfLevels);
+    }
+
+    /** Table picker card: "TABLE 3 / 7", the table's name and its best score. */
+    void updateTableCard() {
+        if (tableNameText == null) return;
+        tableIndexText.setText(getString(R.string.arcade_table_index, currentLevel, numberOfLevels));
+        tableNameText.setText(tableName(currentLevel));
+        long best = GameSummary.bestOf(highScores);
+        tableBestText.setText(best > 0
+                ? getString(R.string.arcade_table_best, ScoreView.SCORE_FORMAT.format(best))
+                : getString(R.string.arcade_table_no_best));
+    }
+
+    /** End-of-game card on the main menu: final score, "new best" badge and share button. */
+    void updateGameOverCard() {
+        if (lastGameScore == null) {
+            gameOverCard.setVisibility(View.GONE);
+            return;
+        }
+        gameOverCard.setVisibility(View.VISIBLE);
+        lastScoreText.setText(ScoreView.SCORE_FORMAT.format(lastGameScore));
+        newBestBadge.setVisibility(lastGameNewBest ? View.VISIBLE : View.GONE);
+        // Nothing worth bragging about with 0 points.
+        findViewById(R.id.shareScoreButton).setVisibility(lastGameScore > 0 ? View.VISIBLE : View.GONE);
+    }
+
+    public void doShareScore(View view) {
+        if (lastGameScore == null) return;
+        String text = getString(R.string.arcade_share_text, ScoreView.SCORE_FORMAT.format(lastGameScore),
+                tableName(currentLevel), "https://play.google.com/store/apps/details?id=" + getPackageName());
+        Intent send = new Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text);
+        try {
+            startActivity(Intent.createChooser(send, getString(R.string.arcade_share_title)));
+        } catch (android.content.ActivityNotFoundException ignored) {
+            // No app can share text; nothing to do.
+        }
     }
 }

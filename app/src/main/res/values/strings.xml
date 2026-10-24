@@ -78,4 +78,24 @@
     <string name="high_score_table_title">High scores</string>
     <string name="select_table">Select table</string>
 
+    <string name="arcade_logo" translatable="false">PINBALL</string>
+    <string name="arcade_game_over">Game over</string>
+    <string name="arcade_new_best">★ NEW BEST</string>
+    <string name="arcade_share_score">Share score</string>
+    <string name="arcade_previous_table">Previous table</string>
+    <string name="arcade_next_table">Next table</string>
+    <string name="arcade_practice_mode">Practice mode · unlimited balls</string>
+    <string name="arcade_play">Play</string>
+    <string name="arcade_table_rules">Table rules</string>
+    <string name="arcade_table_index">Table %1$d / %2$d</string>
+    <string name="arcade_table_best">Best %1$s</string>
+    <string name="arcade_table_no_best">No score yet — be the first</string>
+    <string name="arcade_share_text">I scored %1$s on the %2$s table in Pinball! Can you beat it? %3$s</string>
+    <string name="arcade_share_title">Share your score</string>
+    <string name="arcade_back">Back</string>
+    <string name="arcade_how_to_play">How to play</string>
+    <string name="arcade_howto_launch">Tap the screen to launch the ball.</string>
+    <string name="arcade_howto_flippers">Tap the left half for the left flipper, the right half for the right one.</string>
+    <string name="arcade_howto_pause">Tap the score bar at the top to pause the game.</string>
+    <string name="arcade_credits">Based on Vector Pinball © 2010–2022 Brian Nenninger · GPL-3.0</string>
 </resources>

@@ -69,4 +69,23 @@
     <string name="shoot_ramp_jackpot_message">Strzel w rampę, aby zgarnąć premię</string>
     <string name="constellation_complete_message">Konstelacja %1$s kompletna</string>
 
+    <string name="arcade_game_over">Koniec gry</string>
+    <string name="arcade_new_best">★ NOWY REKORD</string>
+    <string name="arcade_share_score">Udostępnij wynik</string>
+    <string name="arcade_previous_table">Poprzedni stół</string>
+    <string name="arcade_next_table">Następny stół</string>
+    <string name="arcade_practice_mode">Tryb treningowy · nieskończone kulki</string>
+    <string name="arcade_play">Graj</string>
+    <string name="arcade_table_rules">Zasady stołu</string>
+    <string name="arcade_table_index">Stół %1$d / %2$d</string>
+    <string name="arcade_table_best">Rekord %1$s</string>
+    <string name="arcade_table_no_best">Brak wyniku</string>
+    <string name="arcade_share_text">Zdobyłem %1$s pkt na stole %2$s w Pinball! Pobijesz to? %3$s</string>
+    <string name="arcade_share_title">Udostępnij wynik</string>
+    <string name="arcade_back">Wstecz</string>
+    <string name="arcade_how_to_play">Jak grać</string>
+    <string name="arcade_howto_launch">Dotknij ekranu, aby wystrzelić kulkę.</string>
+    <string name="arcade_howto_flippers">Dotknij lewej połowy dla lewego flippera, prawej dla prawego.</string>
+    <string name="arcade_howto_pause">Dotknij paska wyniku u góry, aby wstrzymać grę.</string>
+    <string name="arcade_credits">Na podstawie Vector Pinball © 2010–2022 Brian Nenninger · GPL-3.0</string>
 </resources>

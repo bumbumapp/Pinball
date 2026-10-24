@@ -69,4 +69,23 @@
     <string name="shoot_ramp_jackpot_message">Tembak landaian untuk jackpot</string>
     <string name="constellation_complete_message">%1$s terselesaikan</string>
 
+    <string name="arcade_game_over">Permainan selesai</string>
+    <string name="arcade_new_best">★ REKOR BARU</string>
+    <string name="arcade_share_score">Bagikan skor</string>
+    <string name="arcade_previous_table">Meja sebelumnya</string>
+    <string name="arcade_next_table">Meja berikutnya</string>
+    <string name="arcade_practice_mode">Mode latihan · bola tak terbatas</string>
+    <string name="arcade_play">Main</string>
+    <string name="arcade_table_rules">Aturan meja</string>
+    <string name="arcade_table_index">Meja %1$d / %2$d</string>
+    <string name="arcade_table_best">Terbaik %1$s</string>
+    <string name="arcade_table_no_best">Belum ada skor</string>
+    <string name="arcade_share_text">Aku mencetak %1$s di meja %2$s di Pinball! Bisa kalahkan? %3$s</string>
+    <string name="arcade_share_title">Bagikan skormu</string>
+    <string name="arcade_back">Kembali</string>
+    <string name="arcade_how_to_play">Cara bermain</string>
+    <string name="arcade_howto_launch">Ketuk layar untuk meluncurkan bola.</string>
+    <string name="arcade_howto_flippers">Ketuk sisi kiri untuk flipper kiri, sisi kanan untuk flipper kanan.</string>
+    <string name="arcade_howto_pause">Ketuk bilah skor di atas untuk menjeda permainan.</string>
+    <string name="arcade_credits">Berdasarkan Vector Pinball © 2010–2022 Brian Nenninger · GPL-3.0</string>
 </resources>

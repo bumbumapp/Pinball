@@ -76,4 +76,23 @@
     <string name="resume_game_button_label">Oyuna devam et</string>
     <string name="quit_button_label">Çıkış</string>
     <string name="select_table">Tablo seçin</string>
+    <string name="arcade_game_over">Oyun bitti</string>
+    <string name="arcade_new_best">★ YENİ REKOR</string>
+    <string name="arcade_share_score">Skoru paylaş</string>
+    <string name="arcade_previous_table">Önceki masa</string>
+    <string name="arcade_next_table">Sonraki masa</string>
+    <string name="arcade_practice_mode">Antrenman modu · sınırsız top</string>
+    <string name="arcade_play">Oyna</string>
+    <string name="arcade_table_rules">Masa kuralları</string>
+    <string name="arcade_table_index">Masa %1$d / %2$d</string>
+    <string name="arcade_table_best">En iyi %1$s</string>
+    <string name="arcade_table_no_best">Henüz skor yok</string>
+    <string name="arcade_share_text">Pinball\'da %2$s masasında %1$s puan yaptım! Geçebilir misin? %3$s</string>
+    <string name="arcade_share_title">Skorunu paylaş</string>
+    <string name="arcade_back">Geri</string>
+    <string name="arcade_how_to_play">Nasıl oynanır</string>
+    <string name="arcade_howto_launch">Topu fırlatmak için ekrana dokun.</string>
+    <string name="arcade_howto_flippers">Sol paleti için sol yarıya, sağ palet için sağ yarıya dokun.</string>
+    <string name="arcade_howto_pause">Oyunu duraklatmak için üstteki skor çubuğuna dokun.</string>
+    <string name="arcade_credits">Vector Pinball tabanlıdır © 2010–2022 Brian Nenninger · GPL-3.0</string>
 </resources>
