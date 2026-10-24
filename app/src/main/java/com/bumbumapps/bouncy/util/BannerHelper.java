@@ -10,7 +10,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
-/** Anchored adaptive banner loaded into a container (only after consent allows ad requests). */
+/**
+ * Standard anchored adaptive banner (about 50-60dp on phones) loaded into a container, only after
+ * consent allows ad requests. The "large" adaptive size was about twice as tall and covered the table.
+ */
 public final class BannerHelper {
 
     private BannerHelper() {
@@ -26,7 +29,7 @@ public final class BannerHelper {
         DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
         int widthPx = container.getWidth() > 0 ? container.getWidth() : metrics.widthPixels;
         int widthDp = (int) (widthPx / metrics.density);
-        adView.setAdSize(AdSize.getLargeAnchoredAdaptiveBannerAdSize(activity, widthDp));
+        adView.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, widthDp));
         container.addView(adView, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,
                 android.view.Gravity.CENTER_HORIZONTAL));
