@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Pinball</string>
+    <string name="app_name" translatable="false">Neon Pinball</string>
 
     <string name="independent_flippers_pref_title">Flippers indépendants</string>
     <string name="independent_flippers_pref_summary_on">Un appui active le flipper du même côté de l\'écran</string>
@@ -90,7 +90,7 @@
     <string name="arcade_table_index">Table %1$d / %2$d</string>
     <string name="arcade_table_best">Record %1$s</string>
     <string name="arcade_table_no_best">Pas encore de score</string>
-    <string name="arcade_share_text">J\'ai marqué %1$s points sur la table %2$s dans Pinball ! Tu peux faire mieux ? %3$s</string>
+    <string name="arcade_share_text">J\'ai marqué %1$s points sur la table %2$s dans Neon Pinball ! Tu peux faire mieux ? %3$s</string>
     <string name="arcade_share_title">Partager ton score</string>
     <string name="arcade_back">Retour</string>
     <string name="arcade_how_to_play">Comment jouer</string>

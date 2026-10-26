@@ -80,7 +80,7 @@
     <string name="arcade_table_index">Tablo %1$d / %2$d</string>
     <string name="arcade_table_best">Rekordo %1$s</string>
     <string name="arcade_table_no_best">Ankoraŭ neniu poentaro</string>
-    <string name="arcade_share_text">Mi gajnis %1$s poentojn ĉe la tablo %2$s en Pinball! Ĉu vi povas superi? %3$s</string>
+    <string name="arcade_share_text">Mi gajnis %1$s poentojn ĉe la tablo %2$s en Neon Pinball! Ĉu vi povas superi? %3$s</string>
     <string name="arcade_share_title">Kunhavigu vian poentaron</string>
     <string name="arcade_back">Reen</string>
     <string name="arcade_how_to_play">Kiel ludi</string>

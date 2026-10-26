@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Pinball</string>
+    <string name="app_name" translatable="false">Neon Pinball</string>
 
     <string name="independent_flippers_pref_title">Ayrık Kollar</string>
     <string name="independent_flippers_pref_summary_on">Sağa dokunuş sağdaki kolları, sola dokunuş soldaki kolları hareket ettirir</string>
@@ -87,7 +87,7 @@
     <string name="arcade_table_index">Masa %1$d / %2$d</string>
     <string name="arcade_table_best">En iyi %1$s</string>
     <string name="arcade_table_no_best">Henüz skor yok</string>
-    <string name="arcade_share_text">Pinball\'da %2$s masasında %1$s puan yaptım! Geçebilir misin? %3$s</string>
+    <string name="arcade_share_text">Neon Pinball\'da %2$s masasında %1$s puan yaptım! Geçebilir misin? %3$s</string>
     <string name="arcade_share_title">Skorunu paylaş</string>
     <string name="arcade_back">Geri</string>
     <string name="arcade_how_to_play">Nasıl oynanır</string>

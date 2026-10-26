@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Pinball</string>
+    <string name="app_name" translatable="false">Neon Pinball</string>
 
     <string name="independent_flippers_pref_title">Independent Flippers</string>
     <string name="independent_flippers_pref_summary_on">A touch activates the flippers on the same side of the screen</string>
@@ -90,7 +90,7 @@
     <string name="arcade_table_index">Table %1$d / %2$d</string>
     <string name="arcade_table_best">Best %1$s</string>
     <string name="arcade_table_no_best">No score yet — be the first</string>
-    <string name="arcade_share_text">I scored %1$s on the %2$s table in Pinball! Can you beat it? %3$s</string>
+    <string name="arcade_share_text">I scored %1$s on the %2$s table in Neon Pinball! Can you beat it? %3$s</string>
     <string name="arcade_share_title">Share your score</string>
     <string name="arcade_back">Back</string>
     <string name="arcade_how_to_play">How to play</string>

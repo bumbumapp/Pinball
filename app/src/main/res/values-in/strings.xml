@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Pinball</string>
+    <string name="app_name" translatable="false">Neon Pinball</string>
 
     <string name="independent_flippers_pref_title">Palang Tersendiri</string>
     <string name="independent_flippers_pref_summary_on">Tekanan akan mengaktifkan palang pada sisi yang sama di layar</string>
@@ -80,7 +80,7 @@
     <string name="arcade_table_index">Meja %1$d / %2$d</string>
     <string name="arcade_table_best">Terbaik %1$s</string>
     <string name="arcade_table_no_best">Belum ada skor</string>
-    <string name="arcade_share_text">Aku mencetak %1$s di meja %2$s di Pinball! Bisa kalahkan? %3$s</string>
+    <string name="arcade_share_text">Aku mencetak %1$s di meja %2$s di Neon Pinball! Bisa kalahkan? %3$s</string>
     <string name="arcade_share_title">Bagikan skormu</string>
     <string name="arcade_back">Kembali</string>
     <string name="arcade_how_to_play">Cara bermain</string>

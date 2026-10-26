@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Pinball</string>
+    <string name="app_name" translatable="false">Neon Pinball</string>
 
     <string name="independent_flippers_pref_title">Onafhankelijke Flippers</string>
     <string name="independent_flippers_pref_summary_on">Een aanraakje activeert de flippers op tegengestelde kanten van de scherm</string>
@@ -80,7 +80,7 @@
     <string name="arcade_table_index">Tafel %1$d / %2$d</string>
     <string name="arcade_table_best">Record %1$s</string>
     <string name="arcade_table_no_best">Nog geen score</string>
-    <string name="arcade_share_text">Ik scoorde %1$s op de tafel %2$s in Pinball! Kun jij dat verslaan? %3$s</string>
+    <string name="arcade_share_text">Ik scoorde %1$s op de tafel %2$s in Neon Pinball! Kun jij dat verslaan? %3$s</string>
     <string name="arcade_share_title">Deel je score</string>
     <string name="arcade_back">Terug</string>
     <string name="arcade_how_to_play">Zo speel je</string>
