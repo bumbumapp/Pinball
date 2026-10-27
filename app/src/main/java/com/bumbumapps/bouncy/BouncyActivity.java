@@ -523,6 +523,8 @@ public class BouncyActivity extends Activity {
                 // game just ended, show button panel and set end game timestamp
                 this.endGameTime = System.currentTimeMillis();
                 updateButtons();
+                // Owner rule: a full-screen ad right after every finished game (banner stays on all screens).
+                handler.post(() -> InterstitialHelper.showIfReady(this, null));
 
                 long finalScore = state.getScore();
                 lastGameScore = finalScore;
@@ -638,8 +640,7 @@ public class BouncyActivity extends Activity {
             return;
         }
         if (!field.getGameState().isGameInProgress()) {
-            // Starting a new game is a natural break point: interstitial (60 s cap) first.
-            InterstitialHelper.showIfReady(this, this::startNewGame);
+            startNewGame();
         }
     }
 
