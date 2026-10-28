@@ -14,12 +14,16 @@ import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 /**
- * Single preloaded interstitial shown after every finished game (owner rule for Pinball; banners stay on
- * all screens). Call {@link #preload(Context)} once ads can be requested and
+ * Single preloaded interstitial shown after a finished game (banners stay on all screens), at most once
+ * per {@link #MIN_GAP_MS} so quick back-to-back games don't get an ad each time. Call {@link #preload(Context)} once ads can be requested and
  * {@link #showIfReady(Activity, Runnable)} when a game ends; {@code next} always runs exactly once (after
  * the ad is dismissed, or immediately if no ad is ready).
  */
 public final class InterstitialHelper {
+
+    public static final long MIN_GAP_MS = 90_000L;
+
+    private static long lastShownMs;
 
     private static InterstitialAd interstitialAd;
     private static boolean loading;
@@ -48,9 +52,15 @@ public final class InterstitialHelper {
                 });
     }
 
+    /** Pure frequency rule, unit tested. */
+    static boolean gapAllows(long now, long lastShown) {
+        return lastShown == 0L || now - lastShown >= MIN_GAP_MS;
+    }
+
     public static void showIfReady(Activity activity, Runnable next) {
         final Runnable after = next != null ? next : () -> { };
-        if (interstitialAd == null || activity == null || activity.isFinishing()) {
+        long now = System.currentTimeMillis();
+        if (interstitialAd == null || activity == null || activity.isFinishing() || !gapAllows(now, lastShownMs)) {
             if (activity != null) {
                 preload(activity);
             }
@@ -72,6 +82,7 @@ public final class InterstitialHelper {
                 after.run();
             }
         });
+        lastShownMs = now;
         ad.show(activity);
     }
 }

@@ -27,9 +27,9 @@ android {
         applicationId "com.bumbumapps.pinball"
         minSdk 24
         targetSdk 36
-        // Play: versionCode 6 submitted 2026-10-26.
-        versionCode 7
-        versionName "1.1.1"
+        // Play: versionCode 7 live 2026-10-27.
+        versionCode 8
+        versionName "1.1.2"
         multiDexEnabled true
     }
 

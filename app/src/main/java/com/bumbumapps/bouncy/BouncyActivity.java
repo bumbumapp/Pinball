@@ -523,7 +523,7 @@ public class BouncyActivity extends Activity {
                 // game just ended, show button panel and set end game timestamp
                 this.endGameTime = System.currentTimeMillis();
                 updateButtons();
-                // Owner rule: a full-screen ad right after every finished game (banner stays on all screens).
+                // Full-screen ad after a finished game, at most once per 90 s (banner stays on all screens).
                 handler.post(() -> InterstitialHelper.showIfReady(this, null));
 
                 long finalScore = state.getScore();
