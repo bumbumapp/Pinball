@@ -1,31 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
-        <shape android:shape="rectangle">
-            <corners android:radius="32dp" />
-            <gradient android:angle="0" android:startColor="#D9327F" android:endColor="#6F2FD0" />
-        </shape>
+        <shape android:shape="rectangle"><corners android:radius="20dp" /><solid android:color="#5B3BE0" /></shape>
     </item>
     <item android:state_focused="true">
-        <layer-list>
-            <item>
-                <shape android:shape="rectangle">
-                    <corners android:radius="32dp" />
-                    <solid android:color="@color/arcade_cyan" />
-                </shape>
-            </item>
-            <item android:bottom="2dp" android:left="2dp" android:right="2dp" android:top="2dp">
-                <shape android:shape="rectangle">
-                    <corners android:radius="30dp" />
-                    <gradient android:angle="0" android:startColor="@color/arcade_pink" android:endColor="@color/arcade_violet" />
-                </shape>
-            </item>
-        </layer-list>
+        <shape android:shape="rectangle"><corners android:radius="20dp" /><solid android:color="@color/arcade_accent" /></shape>
     </item>
     <item>
-        <shape android:shape="rectangle">
-            <corners android:radius="32dp" />
-            <gradient android:angle="0" android:startColor="@color/arcade_pink" android:endColor="@color/arcade_violet" />
-        </shape>
+        <shape android:shape="rectangle"><corners android:radius="20dp" /><solid android:color="@color/arcade_accent" /></shape>
     </item>
 </selector>

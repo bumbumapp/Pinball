@@ -62,7 +62,7 @@ public class ScoreView extends View {
     public ScoreView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // Neon arcade look: display font with a soft glow on a dark gradient bar.
-        android.graphics.Typeface arcadeFont = androidx.core.content.res.ResourcesCompat.getFont(context, R.font.russo_one);
+        android.graphics.Typeface arcadeFont = androidx.core.content.res.ResourcesCompat.getFont(context, R.font.jakarta_extrabold);
         textPaint.setColor(Color.WHITE);
         textPaint.setTypeface(arcadeFont);
         textPaint.setTextAlign(Paint.Align.CENTER);

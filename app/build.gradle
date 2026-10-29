@@ -28,8 +28,8 @@ android {
         minSdk 24
         targetSdk 36
         // Play: versionCode 7 live 2026-10-27.
-        versionCode 8
-        versionName "1.1.2"
+        versionCode 9
+        versionName "1.2.0"
         multiDexEnabled true
     }
 

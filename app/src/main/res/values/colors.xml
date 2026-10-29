@@ -6,8 +6,10 @@
 
     <!-- Neon arcade palette -->
     <color name="arcade_bg">#0B0A1A</color>
-    <color name="arcade_panel">#EB141129</color>
-    <color name="arcade_card">#1AFFFFFF</color>
+    <color name="arcade_panel">#F2171A23</color>
+    <color name="arcade_card">#1E2230</color>
+    <color name="arcade_tile">#262B3A</color>
+    <color name="arcade_accent">#6D4AFF</color>
     <color name="arcade_stroke">#26FFFFFF</color>
     <color name="arcade_pink">#FF3D9A</color>
     <color name="arcade_violet">#8A3FFC</color>
@@ -16,5 +18,5 @@
     <color name="arcade_silver">#C9D3E3</color>
     <color name="arcade_bronze">#E59866</color>
     <color name="arcade_text">#FFFFFF</color>
-    <color name="arcade_text_secondary">#B3B8C7</color>
+    <color name="arcade_text_secondary">#A4AABA</color>
 </resources>

@@ -771,7 +771,7 @@ public class BouncyActivity extends Activity {
             TextView rankView = new TextView(this);
             rankView.setText("#" + rank);
             rankView.setTextSize(16);
-            rankView.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.russo_one));
+            rankView.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.jakarta_extrabold));
             rankView.setTextColor(color);
             rankView.setMinWidth((int) (44 * density));
             row.addView(rankView);
@@ -780,7 +780,7 @@ public class BouncyActivity extends Activity {
             scoreItem.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
             scoreItem.setText(ScoreView.SCORE_FORMAT.format(score));
             scoreItem.setTextSize(20);
-            scoreItem.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.russo_one));
+            scoreItem.setTypeface(androidx.core.content.res.ResourcesCompat.getFont(this, R.font.jakarta_extrabold));
             scoreItem.setTextColor(rank == 1 ? color : getResources().getColor(R.color.arcade_text));
             scoreItem.setGravity(Gravity.END);
             row.addView(scoreItem);

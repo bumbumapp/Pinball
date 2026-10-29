@@ -78,7 +78,7 @@
     <string name="high_score_table_title">High scores</string>
     <string name="select_table">Select table</string>
 
-    <string name="arcade_logo" translatable="false">PINBALL</string>
+    <string name="arcade_logo" translatable="false">Neon Pinball</string>
     <string name="arcade_game_over">Game over</string>
     <string name="arcade_new_best">★ NEW BEST</string>
     <string name="arcade_share_score">Share score</string>

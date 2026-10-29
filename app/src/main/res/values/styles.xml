@@ -13,42 +13,38 @@
 
     <!-- Neon arcade menu -->
     <style name="ArcadeTitle">
-        <item name="android:fontFamily">@font/russo_one</item>
-        <item name="android:textSize">34sp</item>
-        <item name="android:letterSpacing">0.12</item>
+        <item name="android:fontFamily">@font/jakarta_extrabold</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:letterSpacing">-0.03</item>
         <item name="android:textColor">@color/arcade_text</item>
-        <item name="android:shadowColor">@color/arcade_pink</item>
-        <item name="android:shadowRadius">18</item>
     </style>
 
     <style name="ArcadeTableName">
-        <item name="android:fontFamily">@font/russo_one</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
         <item name="android:textSize">22sp</item>
+        <item name="android:letterSpacing">-0.02</item>
         <item name="android:textColor">@color/arcade_text</item>
-        <item name="android:shadowColor">@color/arcade_cyan</item>
-        <item name="android:shadowRadius">10</item>
     </style>
 
     <style name="ArcadeScore">
-        <item name="android:fontFamily">@font/russo_one</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/jakarta_extrabold</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:letterSpacing">-0.02</item>
         <item name="android:textColor">@color/arcade_gold</item>
-        <item name="android:shadowColor">#99FFC83D</item>
-        <item name="android:shadowRadius">14</item>
     </style>
 
     <style name="ArcadeCaption">
         <item name="android:textSize">12sp</item>
-        <item name="android:letterSpacing">0.18</item>
+        <item name="android:letterSpacing">0.08</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">@font/jakarta_semibold</item>
         <item name="android:textColor">@color/arcade_text_secondary</item>
     </style>
 
     <style name="ArcadeBadge">
-        <item name="android:fontFamily">@font/russo_one</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
         <item name="android:textSize">13sp</item>
-        <item name="android:letterSpacing">0.1</item>
+        <item name="android:letterSpacing">0</item>
         <item name="android:textColor">@color/arcade_bg</item>
         <item name="android:background">@drawable/bg_arcade_badge</item>
         <item name="android:paddingStart">12dp</item>
@@ -58,19 +54,19 @@
     </style>
 
     <style name="ArcadeButton">
-        <item name="android:fontFamily">@font/russo_one</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:letterSpacing">0.08</item>
+        <item name="android:letterSpacing">0</item>
         <item name="android:textColor">@color/arcade_text</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:stateListAnimator">@null</item>
         <item name="android:gravity">center</item>
     </style>
 
     <style name="ArcadeButton.Primary">
         <item name="android:background">@drawable/bg_arcade_button_primary</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:elevation">6dp</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
     <style name="ArcadeButton.Secondary">
@@ -90,8 +86,8 @@
     </style>
 
     <style name="ArcadeIconButton">
-        <item name="android:layout_width">52dp</item>
-        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:background">@drawable/bg_arcade_icon_button</item>
