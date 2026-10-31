@@ -12,7 +12,7 @@ public class FieldDriver {
 
     Field field;
 
-    boolean running;
+    volatile boolean running;
     Thread gameThread;
     Runnable drawFn;
 
@@ -24,6 +24,9 @@ public class FieldDriver {
 
     // Sleep this long when field.hasActiveElements() is false.
     static long INACTIVE_FRAME_MSECS = 250;
+
+    // stop() runs on the main thread (onPause); never block it longer than this.
+    static long STOP_TIMEOUT_MSECS = 500;
 
     private static long MILLION = 1000000;
     private static long BILLION = MILLION * 1000;
@@ -46,10 +49,16 @@ public class FieldDriver {
     /** Stops the game thread, which will pause updates to the game state and view redraws. */
     public void stop() {
         running = false;
+        Thread thread = gameThread;
+        if (thread == null) return;
+        // An unbounded join() here caused "Input dispatching timed out" ANRs when the game thread
+        // was stuck drawing (e.g. screen turning off). Wake it up and wait only briefly.
+        thread.interrupt();
         try {
-            gameThread.join();
+            thread.join(STOP_TIMEOUT_MSECS);
         }
         catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
         }
     }
 
