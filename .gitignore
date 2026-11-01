@@ -7,3 +7,4 @@ gen/
 local.properties
 *.iml
 .DS_Store
+ads.properties
