@@ -2,6 +2,8 @@ package com.bumbumapps.bouncy.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.bumbumapps.bouncy.R;
 import com.huawei.hms.ads.AdListener;
@@ -59,20 +61,39 @@ public final class InterstitialHelper {
             return;
         }
         interstitialAd = null;
+        // Huawei only reports load failures via onAdFailed: if show() never opens the ad, do not wait forever.
+        final boolean[] opened = {false};
+        final boolean[] done = {false};
+        final Runnable finish = () -> {
+            if (done[0]) {
+                return;
+            }
+            done[0] = true;
+            preload(activity);
+            after.run();
+        };
         ad.setAdListener(new AdListener() {
             @Override
+            public void onAdOpened() {
+                opened[0] = true;
+            }
+
+            @Override
             public void onAdClosed() {
-                preload(activity);
-                after.run();
+                finish.run();
             }
 
             @Override
             public void onAdFailed(int code) {
-                preload(activity);
-                after.run();
+                finish.run();
             }
         });
         lastShownMs = now;
         ad.show(activity);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (!opened[0]) {
+                finish.run();
+            }
+        }, 3000L);
     }
 }
